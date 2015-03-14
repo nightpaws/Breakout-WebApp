@@ -1,14 +1,73 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!Doctype html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="1344.72">
-  <style type="text/css">
-  </style>
+<title>CS317 - Breakout</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            border: 0px;
+        }
+        html, body {
+            -webkit-user-select: none;
+            -moz-user-select: -moz-none;
+            -ms-user-select: none;
+            height: 100%;
+            min-height: 100%;
+            background-color: lightgreen;
+            overflow:hidden;
+        }
+        #topdiv {
+            background-color: lightcyan;
+        }
+        main{
+            background-color: cyan;
+            height: 100%;
+        }
+        #ball{
+            cursor: pointer;
+        }
+        #canvasdiv{
+            background: red;
+            height: 100%;
+        } 
+    </style>
 </head>
 <body>
+<main id="main">
+<div id="topdiv">
+        <p>The canvas below should fill the div and the bottom of the screen.</p>
+    </div>
+<div id="canvasdiv">
+        <canvas id="canvas2"></canvas>
+    </div>	</main>
+	<script>
+    
+    function fitToContainer(main, top, canvas){
+        canvas.width  = main.offsetWidth;
+        canvas.height = main.offsetHeight - top.offsetHeight;
+      }
+
+    function draw() {
+        var canvas2 = document.getElementById("canvas2");
+        fitToContainer(main, topdiv, canvas2);
+        var context = canvas2.getContext("2d");
+        var w = canvas2.width, h=canvas2.height;
+        context.rect(0,0,canvas2.width,canvas2.height);
+        context.fillStyle="yellow";
+        context.fill();
+        context.lineWidth = 5;
+        context.strokeStyle = 'blue';
+        context.beginPath();
+        context.moveTo(0,0);
+        context.lineTo(w,h);
+        context.moveTo(w,0);
+        context.lineTo(0,h);
+        context.stroke();
+    }
+    
+    window.addEventListener("load", draw);
+    window.addEventListener("resize", draw);
+</script>
 </body>
-</html>
