@@ -1,0 +1,33 @@
+/*Setting the overall theme*/
+html, body,section{
+  height: 100%;
+  font-family: sans-serif;
+  color: white;
+  overflow: hidden;
+}
+
+/*Hide stuff*/
+.noDisplay {
+	display: none;
+}
+
+
+/*Main menu specific styling*/
+#menu {
+	text-align: center;
+	background-color: black;
+	color: white;
+}
+
+#menu h1 {
+	padding-top: 7rem;
+	padding-bottom: 3rem;
+	font-size: xx-large;
+}
+
+#menu li {
+	padding-bottom: 1.5rem;
+	font-size: medium;
+}
+
+/*In game styling*/

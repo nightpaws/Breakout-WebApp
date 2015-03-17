@@ -16,9 +16,32 @@
       <link href="css/reset.css" type="text/css" rel="stylesheet"/>
       <link href="css/breakout.css" type="text/css" rel="stylesheet"/>
    </head>
+
    <body>
+      <!-- Code will go here hopefully -->
 
-
+      <section id="menu">
+         <ul>
+            <li><h1>Breakout:</br> The (cr)App</h1></li>
+            <li id="start">New Game</li>
+            <!-- Either will quit app if possible, or retreat to google a la panic mode -->
+            <li>Quit Game</li>
+         </ul>
+      </section>
+      <section id="gameplay" class="noDisplay">
+        <div href="#" id="pauseButton">Pause
+        </div>
+       <div id="game">
+        <canvas id="gameCanvas">Your device sucks. Upgrade your browser or buy a better device.</canvas>
+     </div>
+     <div id="pause" class="noDisplay">
+      <h1>Paused!</h1>
+      <ul>
+         <li href="#" id="resume">Resume</li>
+         <li href="#" id="quit">Return to Menu</li>
+      </ul>
+     </div>
+      </section>
 
 
    	<!-- Essential Script for functionality -->
@@ -28,4 +51,5 @@
    	<!-- Not so essential script for functionality but ho hum... -->
    	<script type="text/javascript" src="js/fucking-IE.js"></script>
    </body>
+   
 </html>
