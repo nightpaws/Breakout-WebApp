@@ -28,6 +28,11 @@ html, body,section{
 #menu li {
 	padding-bottom: 1.5rem;
 	font-size: medium;
+	font-style: italic;
+}
+
+#menu h2 {
+	font-size:small;
 }
 
 /*In game styling*/
