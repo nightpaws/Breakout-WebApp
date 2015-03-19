@@ -36,3 +36,9 @@ html, body,section{
 }
 
 /*In game styling*/
+#pauseButton {
+
+}
+#gameplay {
+	background-color: black;
+}

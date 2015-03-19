@@ -1,56 +1,58 @@
 <!Doctype html>
 <html>
-   <head>
-      <title>CS317 Breakout</title>
-      <!-- Make stupid browsers work -->
-      <meta charset="UTF-8">
-      <!-- Make it run as an app, and scale correctly -->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-      <!--<meta name="mobile-web-app-capable" content="yes">-->
-      <meta name="apple-mobile-web-app-capable" content="yes">
-      <!-- Give the app an icon -->
-      <link rel="icon" sizes="192x192" href="images/breakout.png">
-      <link rel="apple-touch-icon" href="images/breakout.png">
-      <link rel="shortcut icon" href="images/breakout-0-75x.png" type="image/x-icon">
-      <!-- Add Style -->
-      <link href="css/reset.css" type="text/css" rel="stylesheet"/>
-      <link href="css/breakout.css" type="text/css" rel="stylesheet"/>
-   </head>
 
-   <body>
-      <!-- Code will go here hopefully -->
+<head>
+    <title>CS317 Breakout</title>
+    <!-- Make stupid browsers work -->
+    <meta charset="UTF-8">
+    <!-- Make it run as an app, and scale correctly -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!--<meta name="mobile-web-app-capable" content="yes">-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Give the app an icon -->
+    <link rel="icon" sizes="192x192" href="images/breakout.png">
+    <link rel="apple-touch-icon" href="images/breakout.png">
+    <link rel="shortcut icon" href="images/breakout-0-75x.png" type="image/x-icon">
+    <!-- Add Style -->
+    <link href="css/reset.css" type="text/css" rel="stylesheet" />
+    <link href="css/breakout.css" type="text/css" rel="stylesheet" />
+</head>
 
-      <section id="menu">
-         <ul>
-            <li><h1>Breakout:</br> The (cr)App</h1></li>
+<body>
+    <!-- Code will go here hopefully -->
+
+    <section id="menu">
+        <ul>
+            <li>
+                <h1>Breakout:</br> The (cr)App</h1></li>
             <li id="start">New Game</li>
             <!-- Either will quit app if possible, or retreat to google a la panic mode -->
             <li id="quit">Quit Game</li>
-         </ul>
-         <h2>(Please lock device rotation before playing!)</h2>
-      </section>
-      <section id="gameplay" class="noDisplay">
+        </ul>
+        <h2>(Please lock device rotation before playing!)</h2>
+    </section>
+    <section id="gameplay" class="noDisplay">
         <div href="#" id="pauseButton">Pause
         </div>
-       <div id="game">
-        <canvas id="gameCanvas">Your device sucks. Upgrade your browser or buy a better device.</canvas>
-     </div>
-     <div id="pause" class="noDisplay">
-      <h1>Paused!</h1>
-      <ul>
-         <li href="#" id="resume">Resume</li>
-         <li href="#" id="quit">Return to Menu</li>
-      </ul>
-     </div>
-      </section>
+        <div id="game">
+            <canvas id="gameCanvas">Your device sucks. Upgrade your browser or buy a better device.</canvas>
+        </div>
+        <div id="pause" class="noDisplay">
+            <h1>Paused!</h1>
+            <ul>
+                <li href="#" id="resume">Resume</li>
+                <li href="#" id="quit">Return to Menu</li>
+            </ul>
+        </div>
+    </section>
 
 
-   	<!-- Essential Script for functionality -->
-   	<script src="js/model.js"></script>
-   	<script src="js/view.js"></script>
-   	<script src="js/controller.js"></script>
-   	<!-- Not so essential script for functionality but ho hum... -->
-   	<script type="text/javascript" src="js/fucking-IE.js"></script>
-   </body>
-   
+    <!-- Essential Script for functionality -->
+    <script src="js/model.js"></script>
+    <script src="js/view.js"></script>
+    <script src="js/controller.js"></script>
+    <!-- Not so essential script for functionality but ho hum... -->
+    <script type="text/javascript" src="js/fucking-IE.js"></script>
+</body>
+
 </html>
