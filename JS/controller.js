@@ -98,7 +98,7 @@ function Controller() {
             console.log("Attempting to Quit...");
             window.close();
             //In browser
-            alert("Application is attempting to quit! But can't because it's in a web browser, Going to Google instead!");
+            alert("Application is attempting to quit! But can't because your device won't let it! Going to Google instead!");
             window.location = "https://encrypted.google.com/";
 
         });
@@ -123,21 +123,6 @@ function Controller() {
             model.gameReset();
             controller.showMainMenu();
         });
-
-
-        //Rotation Checking Code
-        if(window.DeviceOrientationEvent){
-
-            window.addEventListener("deviceorientation", function(eventData){
-
-                var gameArea = document.getElementById("gameArea");
-                gamma = eventData.gamma;
-
-            });
-
-        }
-        //Resize check! Stops us losing where everything is (hopefully...)
-        window.addEventListener("resize", model.getVars);
 
         window.setInterval(this.update, rate);
 
