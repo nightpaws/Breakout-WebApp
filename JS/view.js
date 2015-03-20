@@ -7,25 +7,25 @@ function View(model) {
     var gamediv = document.getElementById("game"); //surrounding game div
     var gameCanvas = document.getElementById("gameCanvas"); //link html canvas
     var firstRun = true; //To allow 'constructor' like call on first run
- 	var canvas = canvasElement.getContext("2d");
+    var canvas = canvasElement.getContext("2d");
 
     /*This function will be used to update the positioning in the view, like in GizmoBall*/
     this.update = function() {
         console.log("Model: update called!")
 
-        	if(firstRun){
-			gameCanvas.style.height = gamediv.clientHeight + "px";
-			gameCanvas.style.width = gamediv.clientWidth + "px";
-			canvas.canvas.height = gamediv.clientHeight ;
-			canvas.canvas.width = gamediv.clientWidth;
+        if (firstRun) {
+            gameCanvas.style.height = gamediv.clientHeight + "px";
+            gameCanvas.style.width = gamediv.clientWidth + "px";
+            canvas.canvas.height = gamediv.clientHeight;
+            canvas.canvas.width = gamediv.clientWidth;
 
-			firstRun = false;
-		}
+            firstRun = false;
+        }
 
-		this.clear();
-		this.paddleDraw();
-		this.brickDraw();
-		this.ballDraw();
+        this.clear();
+        this.paddleDraw();
+        this.brickDraw();
+        this.ballDraw();
 
 
     };
@@ -39,10 +39,10 @@ function View(model) {
     this.paddleDraw = function() {
         console.log("Model: paddleDraw called!");
 
-		var paddle = model.getPaddleData();
+        var paddle = model.getPaddleData();
 
-		canvas.fillStyle = "#FF0000";
-		canvas.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+        canvas.fillStyle = "#FF0000";
+        canvas.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
 
     };
 
@@ -59,7 +59,7 @@ function View(model) {
     /*Bin everything */
     this.clear = function() {
         console.log("Model: clear called!");
-		canvas.clearRect(0,0,canvas.canvas.width, canvas.canvas.height);
+        canvas.clearRect(0, 0, canvas.canvas.width, canvas.canvas.height);
 
     };
 

@@ -17,10 +17,10 @@ function Controller() {
     };
 
 
-    /*Show/hide functions*/
+    /*Show/hide display functions*/
     this.showMainMenu = function() {
         console.log("Controller: showMainMenu called!");
-        
+
         var pauseMnu = document.getElementById("pause");
         pauseMnu.className = "noDisplay";
 
@@ -53,44 +53,42 @@ function Controller() {
     };
 
 
-    /*Once I've finished initialising all the functions I need, I can begin the main control method.*/
+    /*Once I've finished initialising all the functions I need,
+    I can begin the main controllers. This attaches the listeners
+    to objects*/
     this.control = function() {
-
         var playBtn = document.getElementById("start");
         var controller = this; //because JS can't self-reference... :\
+        
+        //Main Menu buttons
         playBtn.addEventListener("click", function() {
-
             var game = document.getElementById("gameplay");
             game.className = "";
-
-           controller.hideMainMenu();
+            controller.hideMainMenu();
 
         });
 
         var exitBtn = document.getElementById("exit");
-        
         exitBtn.addEventListener("click", function() {
-
             console.log("Attempting to Quit...");
             window.close();
             alert("Application is attempting to quit! But can't because it's in a web browser, Going to Google instead!");
             window.location = "https://encrypted.google.com/";
-
         });
-
-         var pauseBtn = document.getElementById("pauseButton");
+        //Top of gameplay view
+        var pauseBtn = document.getElementById("pauseButton");
         pauseBtn.addEventListener("click", function() {
             controller.showPauseMenu();
         });
 
         //In Game Pause Options
-         var resumeGameBtn = document.getElementById("resume");
+        var resumeGameBtn = document.getElementById("resume");
         resumeGameBtn.addEventListener("click", function() {
             controller.hidePauseMenu();
-          //controller.run();
+            //controller.run();
         });
 
-         var quitGameBtn = document.getElementById("quit");
+        var quitGameBtn = document.getElementById("quit");
         quitGameBtn.addEventListener("click", function() {
             //model.clearModel();
 
