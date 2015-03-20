@@ -14,7 +14,11 @@ function Model(controller) {
     var start = true;
 
     function brick(x, y, width, color) {
-    	// console.log("Model: brick called!");
+        /*contains the structure of bricks.
+        If this were java I'd be using more classes
+        for this.*/
+
+        // console.log("Model: brick called!");
         var x = x;
         var y = y;
         var width = width;
@@ -22,44 +26,44 @@ function Model(controller) {
         var color = color;
         var visible = true; //whether brick can be seen
 
-        this.getX = function(){
-        // console.log("Model: getX called!");  
-        return x;
+        this.getX = function() {
+            // console.log("Model: getX called!");  
+            return x;
         };
 
-        this.getY = function(){
-        	// console.log("Model: getY called!");
+        this.getY = function() {
+            // console.log("Model: getY called!");
             return y;
         };
 
-        this.getWidth = function(){
-        	// console.log("Model: getWidth called!");
+        this.getWidth = function() {
+            // console.log("Model: getWidth called!");
             return width;
         };
 
-        this.getHeight = function(){
-        	// console.log("Model: getHeight called!");
+        this.getHeight = function() {
+            // console.log("Model: getHeight called!");
             return height;
         };
 
-        this.getColor = function(){
-        	// console.log("Model: getColor called!");
+        this.getColor = function() {
+            // console.log("Model: getColor called!");
             return color;
         };
 
-        this.getVisible = function(){
-        	// console.log("Model: visible called!");
+        this.getVisible = function() {
+            // console.log("Model: visible called!");
             return visible;
         };
 
         this.remove = function() {
-        	// console.log("Model: remove called!");
+            // console.log("Model: remove called!");
             visible = false;
         };
     }
 
     this.getVars = function() {
-// console.log("Model: getVars called!");
+        // console.log("Model: getVars called!");
         gameHeight = gameArea.clientHeight;
         gameWidth = gameArea.clientWidth;
 
@@ -83,17 +87,14 @@ function Model(controller) {
         var brickColumns = 10,
             brickRows = 4,
             brickWidth = gameWidth / brickColumns,
-            colors = ["#FF0000" , "#0000FF", "#00FF00", "#FFFF00"];
+            colors = ["#FF0000", "#0000FF", "#00FF00", "#FFFF00"];
 
-        for( var x = 0; x < brickColumns; x++){
+        for (var x = 0; x < brickColumns; x++) {
             bricks[x] = new Array();
-            for (var y = 0; y < brickRows; y++){
+            for (var y = 0; y < brickRows; y++) {
                 bricks[x][y] = new brick(x * brickWidth, y * brickWidth, brickWidth, colors[y]);
             }
         }
-
-        // score = 0;
-
     };
 
     this.getBricks = function() {
@@ -102,55 +103,58 @@ function Model(controller) {
     };
 
     this.getPaddleData = function() {
-    	// console.log("Model: getPaddleData called!");
+        // console.log("Model: getPaddleData called!");
         return paddle;
     };
 
     this.getBallData = function() {
-    	// console.log("Model: getBallData called!");
+        // console.log("Model: getBallData called!");
         return ball;
     };
 
     this.update = function(gamma) {
-	// console.log("Model: update called!");
-        if(start){
+        // console.log("Model: update called!");
+        if (start) {
             this.getVars();
             var d = new Date();
             start = false;
         }
 
-        if(this.checkWinCondition()){
-            controller.gameWon();
-        }
-
-
         this.movePaddle(gamma);
         this.moveBall();
     };
 
-    this.ballCollision = function(x, y, rect){
-    	// console.log("Model: ballCollision called!");
+    this.ballCollision = function(x, y, rect) {
+        // console.log("Model: ballCollision called!");
         rect.w = rect.x2 - rect.x;
         rect.h = rect.y2 - rect.y;
 
-        var distX = Math.abs(x - rect.x-rect.w/2);
-        var distY = Math.abs(y - rect.y-rect.h/2);
+        var distanceX = Math.abs(x - rect.x - rect.w / 2);
+        var distY = Math.abs(y - rect.y - rect.h / 2);
 
-        if (distX > (rect.w/2 + ball.width/2)) { return false; }
-        if (distY > (rect.h/2 + ball.width/2)) { return false; }
+        if (distanceX > (rect.w / 2 + ball.width / 2)) {
+            return false;
+        }
+        if (distY > (rect.h / 2 + ball.width / 2)) {
+            return false;
+        }
 
-        if (distX <= (rect.w/2)) { return true; } 
-        if (distY <= (rect.h/2)) { return true; }
+        if (distanceX <= (rect.w / 2)) {
+            return true;
+        }
+        if (distY <= (rect.h / 2)) {
+            return true;
+        }
 
-        var dx=distX-rect.w/2;
-        var dy=distY-rect.h/2;
-        return (dx*dx+dy*dy<=((ball.width/2)*(ball.width/2)));
+        var dx = distanceX - rect.w / 2;
+        var dy = distY - rect.h / 2;
+        return (dx * dx + dy * dy <= ((ball.width / 2) * (ball.width / 2)));
     };
 
     this.moveBall = function() {
-		// console.log("Model: moveBall called!");
-        var x = ball.x + ball.vx * ( controller.getUpdateRate() / 1000);
-        var y = ball.y + ball.vy * ( controller.getUpdateRate() / 1000);
+        // console.log("Model: moveBall called!");
+        var x = ball.x + ball.vx * (controller.getUpdateRate() / 1000);
+        var y = ball.y + ball.vy * (controller.getUpdateRate() / 1000);
 
         var rect = {};
         rect.x = 0;
@@ -158,143 +162,132 @@ function Model(controller) {
         rect.x2 = gameWidth;
         rect.y2 = gameHeight;
 
-        /*
-         * Detect for the walls first
-         */
-        if( x - ball.width/2 < 0.0 ) { // left wall
-            x = 0 + ball.width /2;
+
+        /*Check to see if hit a wall */
+        if (x - ball.width / 2 < 0.0) { // left wall
+            x = 0 + ball.width / 2;
             ball.vx *= -1;
         }
 
-        if ( x + ball.width/2 > gameWidth ){ //right wall
-            x = gameWidth - ball.width/2;
+        if (x + ball.width / 2 > gameWidth) { //right wall
+            x = gameWidth - ball.width / 2;
             ball.vx *= -1;
         }
 
-        if ( y - ball.width /2 < 0.0 ){ //top wall
-            y = 0 + (ball.width /2);
+        if (y - ball.width / 2 < 0.0) { //top wall
+            y = 0 + (ball.width / 2);
             ball.vy *= -1;
         }
 
-        if ( y + ball.width /2 > gameHeight){// bottom wall
-            
+        if (y + ball.width / 2 > gameHeight) { // bottom wall
+            alert("Game Over!");
+            window.location.reload(false); //don't repull from server
             controller.pause(); //stops the game anyway
         }
 
-        /*
-         * Next check for the paddle. We first need to check for a collision
-         * Then work out what kind of collision happened.
-         *
-         * There is no point checking for collisions with the bottom of the 
-         * paddle.
-         */
+       //Checking for paddle collisions now
         var rect = {};
         rect.x = paddle.x;
         rect.y = paddle.y;
         rect.x2 = paddle.x + paddle.width;
         rect.y2 = paddle.y + paddle.height;
 
-        // if (false){
-        if (this.ballCollision(x, y, rect)){
-
-            /*
-             * Okay collision happened, detect what side it happened on
-             */
-           
-            /*
-             * if all was outside of a y collision, now its causing one
-             */
-            if( ball.y + ball.height /2 < paddle.y || ball.y - ball.height / 2 > paddle.y + paddle.height){
-
-                y = paddle.y - ball.height/2;
-                ball.vy *= -1;
-
-                ball.vx += paddle.speed * 0.2;
-
-            }else{ // must be the sides
-
-                //If was outside left of paddle && on left side of paddle
-                if(ball.x + ball.width/2 < paddle.x 
-                    && x - ball.width/2 < paddle.x + (paddle.width/2)){
-
-                    x = paddle.x - ball.width/2;
-                    ball.vx = (ball.vx * -1 ) + paddle.speed;
 
 
-                }else if(ball.x > paddle.x + paddle.width){ //right side
+        if (this.ballCollision(x, y, rect)) {
 
-                    x = paddle.x + paddle.width + ball.width/2;
-                    ball.vx = (ball.vx * -1 ) + paddle.speed;
+            //Collision has happened panic stations as I break out the maths textbook.
+            //Going by BODMAS and hoping for the best here.
+            //http://www.mathsisfun.com/operation-order-bodmas.html
 
+            if (ball.y + (ball.height / 2) < paddle.y ||  paddle.y + paddle.height < ball.y - (ball.height / 2)) {
+                //Hit paddle
+                y = paddle.y - (ball.height / 2);
+                ball.vy = ball.vy * -1;
+                ball.vx = ball.vx + (paddle.speed * 0.2);
+
+            } else { //Must've hit the sides
+
+                if (ball.x + (ball.width / 2) < paddle.x && x - (ball.width / 2) < paddle.x + (paddle.width / 2)) {
+                //If was left side of paddle
+                    x = paddle.x - (ball.width / 2);
+                    ball.vx = (ball.vx * -1) + paddle.speed;
+
+                } else if (ball.x > paddle.x + paddle.width) {
+                    //Now we're checking the right hand side of the paddle
+                    x = paddle.x + paddle.width + (ball.width / 2);
+                    ball.vx = (ball.vx * -1) + paddle.speed;
                 }
             }
-        }//finished paddle checks
+        } //Finished checking the paddle *phew* round 2!
 
-        /*
-         * Check for collisions with the bricks
-         */
-        for( var xcoord = 0; xcoord < bricks.length; xcoord++){
-            for(var ycoord = 0; ycoord < bricks[xcoord].length; ycoord++){
+        //Check for collisions against bricks        
+        for (var xCoordinate = 0; xCoordinate < bricks.length; xCoordinate++) {
+            for (var yCoordinate = 0; yCoordinate < bricks[xCoordinate].length; yCoordinate++) {
 
-                var brick = bricks[xcoord][ycoord]; // get brick
+                var brick = bricks[xCoordinate][yCoordinate]; //store brick
 
-                if(brick.getVisible()){ // if brick exists
+                //if brick is visible i.e. not already hit
+                if (brick.getVisible()) {
 
                     rect.x = brick.getX();
-                    rect.x2 = brick.getX() + brick.getWidth();
                     rect.y = brick.getY();
+
+                    rect.x2 = brick.getX() + brick.getWidth();
                     rect.y2 = brick.getY() + brick.getHeight();
 
-                    //If collision
-                    if( this.ballCollision(x, y, rect)){
-
-                        //remove brick from the game
+                    //If a collision occurs then hide the brick
+                    if (this.ballCollision(x, y, rect)) {
                         brick.remove();
 
-                      //Deal with the ball
-                        if ( ball.y > brick.getY() + brick.getHeight() - ball.height/2 && ball.x < (ball.y/1.6197) + brick.getX() + brick.getWidth() && ball.x > brick.getX() - (ball.y/1.6197)) {
+                        /*Adjust ball to account for position with some slightly fiddly maths
+                          I found in an old textbook Hopefully it's more accurate than my higher
+                         maths. (Miserable fail)*/
+                        if (ball.y > brick.getY() + brick.getHeight() - (ball.height / 2) && ball.x < (ball.y / 1.61) + brick.getX() + brick.getWidth() && ball.x > brick.getX() - (ball.y / 1.61)) {
 
-                            if (y < brick.getY() + brick.getHeight() + (ball.height/2) ) {
+                            if (y < brick.getY() + brick.getHeight() + (ball.height / 2)) {
 
                                 y = brick.getY() + brick.getHeight() + ball.height;
-                                ball.vy *= -1;
+                                ball.vy = ball.vy * -1;
                             }
-                        }else if (ball.y < brick.getY() && ball.x < (y/1.6197) + brick.getX() + brick.getWidth() && ball.x > brick.getX() - (y/1.6197)) {
+                        } else if (ball.y < brick.getY() && ball.x < (y / 1.61) + brick.getX() + brick.getWidth() && ball.x > brick.getX() - (y / 1.61)) {
 
-                            if( y < brick.getY() - ball.height / 2 ){
+                            if (y < brick.getY() - (ball.height / 2)) {
                                 y = brick.getY() - ball.height;
-                                ball.vy *= -1;
+                                ball.vy = ball.vy * -1;
                             }
 
-                        } else if (ball.x < brick.getX() && x < brick.getX() + (brick.getWidth()/2)){ // left
+                        } else if (ball.x < brick.getX() && x < brick.getX() + (brick.getWidth() / 2)) {
                             x = brick.getX() - ball.width;
-                            ball.vx *= -1;
-                        } else if(ball.x > brick.getX() + brick.getWidth() && x > brick.getX() - brick.getWidth() / 2){ //right
+                                ball.vy = ball.vy * -1;
+                        } else if (ball.x > brick.getX() + brick.getWidth() && x > brick.getX() - (brick.getWidth() / 2)) {
+                            //right
                             x = brick.getX() + brick.getWidth() + brick.getWidth();
-                            ball.vx *= -1;
+                                ball.vy = ball.vy * -1;
                         }
-                    } //end collision handling
+                        //Done playing with balls.
+                    } 
+                    //Done playing with bricks.
                 }
-            }//end brick collision checking
+            }
         }
-
+        //final assignments
         ball.x = x;
         ball.y = y;
-    };
+    }; //Horrible maths section 2, done. Normal serice shall now resume.
 
     this.movePaddle = function(gamma) {
-    	// console.log("Model: movePaddle called!");
+        // console.log("Model: movePaddle called!");
 
+        /*Adjust position of paddle using the gamma metric from device
+        sensor. Apparently works on some MacBook Pro's... Who knew?*/
         var multiplier = 1;
-        if( gamma < 0 ){
-            multiplier = -1;
-            gamma = gamma * -1;
+        if (gamma < 0) {
+            multiplier = -1; //stop drifting right
+            gamma = gamma * -1; //allow moving left
         }
 
-        if(gamma < 0.5 ){
-            gamma = 0;
-        }
-
+        //Allow the paddle to move
         var speed = Math.pow(gamma, 1.35) / 5 * multiplier * 2;
 
         paddle.speed = speed * controller.getUpdateRate();
@@ -307,34 +300,8 @@ function Model(controller) {
         }
     };
 
-    this.checkWinCondition = function() {
-    	// console.log("Model: checkWinCondition called!");
-
-        for( var xcoord = 0; xcoord < bricks.length; xcoord++){
-            for(var ycoord = 0; ycoord < bricks[xcoord].length; ycoord++){
-         
-                if(bricks[xcoord][ycoord].getVisible()){
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    };
-
-    this.resetModel = function() {
+    this.gameReset = function() {
         // console.log("Model: resetModel called!");
-
         start = true;
-    };
-
-    this.shutDown = function() {
-	// console.log("Model: shutDown called!");
-	};
-
-    this.getScore = function() {
-    	// console.log("Model: getScore called!");
-        alert(score);
-        return Math.round(score);
     };
 }
