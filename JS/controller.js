@@ -96,7 +96,7 @@ function Controller() {
         var quitGame = document.getElementById("exit");
         quitGame.addEventListener("click", function() {
             console.log("Attempting to Quit...");
-            window.close();
+            window.close(); //attempt quitting in Chrome
             //In browser
             alert("Application is attempting to quit! But can't because your device won't let it! Going to Google instead!");
             window.location = "https://encrypted.google.com/";
@@ -125,7 +125,16 @@ function Controller() {
         });
 
         window.setInterval(this.update, rate);
+        
 
+        //The all important movement Code
+        if(window.DeviceOrientationEvent){
+            /*if the device is detected as moving
+             take the gamma value and store it*/
+            window.addEventListener("deviceorientation", function(eventData){
+                gamma = eventData.gamma;
+            });
+        }
     };
 
     this.control(); //loop!
