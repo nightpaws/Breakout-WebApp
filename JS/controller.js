@@ -6,13 +6,13 @@ function Controller() {
     var model = new Model(this);
     var view = new View(model);
     var rate = 30;//rate of update
-    var run = false; //game state
+    var runStatus = false; //game state
     var gamma = 0;
 
     this.update = function() {
      //Will kill browser console.log("Controller: update called!");
 
-        if(run){
+        if(runStatus){
             model.update(gamma);
             view.update();
         }
@@ -42,14 +42,14 @@ function Controller() {
     };
 
     this.play = function() {
-        // console.log("Controller: run called!");
+        // console.log("Controller: play called!");
 
-        run = true;
+        runStatus = true;
     };
 
     this.pause = function() {
         // console.log("Controller: pause called!");
-        run = false;
+        runStatus = false;
     };
     this.showPauseMenu = function() {
       var controller = this;
@@ -69,9 +69,8 @@ function Controller() {
         controller.play();
     };
 
-    this.getUpdateTime = function() {
-        // console.log("Controller: getUpdateTime called!");
-
+    this.getUpdateRate = function() {
+        // console.log("Controller: getUpdateRate called!");
         return rate;
     };
 
@@ -138,7 +137,7 @@ function Controller() {
             });
 
         }
-        //Resize check! Stops us losing where everything is
+        //Resize check! Stops us losing where everything is (hopefully...)
         window.addEventListener("resize", model.getVars);
 
         window.setInterval(this.update, rate);
@@ -146,6 +145,10 @@ function Controller() {
     };
 
     this.control(); //loop!
+    /*CAUTION: This loop has a fun side effect of locking up
+     your device if you fiddle with code whilst it's still running.
+      If you're running with 1GB RAM or less use caution playing
+       with this... As learned from my partners netbook...*/
 }
 
 document.addEventListener("load", new Controller());
