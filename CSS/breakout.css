@@ -35,21 +35,41 @@ html, body,section{
 	font-size:small;
 }
 
-/*In game styling*/
+/*Pause button styling*/
 #pauseButton {
 	text-align: center;
-}
-#gameplay {
-	background-color: black;
+	background: blue;
 }
 
 /*pause menu */
 #pause {
+	position: absolute;
 	text-align: center;
+    left: 5%;
+    top: 40%;
+    width: 90%;
+    background: gray;
+    border-radius: 1em;
+
 }
 #pause h1 {
 	font-size: xx-large;
 }
 #pause li {
 	font-size: x-large;
+}
+
+/*Gameplay styling*/
+#gameplay {
+	background-color: black;
+}
+
+#pauseButton {
+height:5%;
+background-color:gray;
+}
+
+#game {
+	height:95%;
+	overflow: hidden;
 }

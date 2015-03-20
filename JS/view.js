@@ -22,10 +22,10 @@ function View(model) {
             firstRun = false;
         }
 
-        this.clear();
+        this.clearGame();
         this.paddleDraw();
-        this.brickDraw();
-        this.ballDraw();
+        // this.brickDraw();
+        // this.ballDraw();
 
 
     };
@@ -41,7 +41,7 @@ function View(model) {
 
         var paddle = model.getPaddleData();
 
-        canvas.fillStyle = "#FF0000";
+        canvas.fillStyle = "#FFFFFF";
         canvas.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
 
     };
@@ -57,7 +57,7 @@ function View(model) {
     };
 
     /*Bin everything */
-    this.clear = function() {
+    this.clearGame = function() {
         console.log("Model: clear called!");
         canvas.clearRect(0, 0, canvas.canvas.width, canvas.canvas.height);
 

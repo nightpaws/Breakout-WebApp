@@ -5,6 +5,11 @@ function Controller() {
     var model = new Model(this);
     var running = false;
 
+
+    if (running) {
+        model.update();
+        view.update();
+    }
     /*Play/Pause*/
     this.play = function() {
         console.log("Controller: play called!");
