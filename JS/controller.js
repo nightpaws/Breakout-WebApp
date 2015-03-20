@@ -96,7 +96,6 @@ function Controller() {
         var quitGame = document.getElementById("exit");
         quitGame.addEventListener("click", function() {
             console.log("Attempting to Quit...");
-            model.shutDown();
             window.close();
             //In browser
             alert("Application is attempting to quit! But can't because it's in a web browser, Going to Google instead!");
@@ -121,7 +120,7 @@ function Controller() {
         var leaveBtn = document.getElementById("quit");
         leaveBtn.addEventListener("click", function() {
             controller.hidePauseMenu();
-            model.resetModel();
+            model.gameReset();
             controller.showMainMenu();
         });
 
