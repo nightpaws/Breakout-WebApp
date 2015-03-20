@@ -45,7 +45,7 @@ function Model(controller) {
         this.getColor = function(){
         	// console.log("Model: getColor called!");
             return color;
-        }
+        };
 
         this.getVisible = function(){
         	// console.log("Model: visible called!");
@@ -104,12 +104,12 @@ function Model(controller) {
     this.getPaddleData = function() {
     	// console.log("Model: getPaddleData called!");
         return paddle;
-    }
+    };
 
     this.getBallData = function() {
     	// console.log("Model: getBallData called!");
         return ball;
-    }
+    };
 
     this.update = function(gamma) {
 	// console.log("Model: update called!");
@@ -145,7 +145,7 @@ function Model(controller) {
         var dx=distX-rect.w/2;
         var dy=distY-rect.h/2;
         return (dx*dx+dy*dy<=((ball.width/2)*(ball.width/2)));
-    }
+    };
 
     this.moveBall = function() {
 		// console.log("Model: moveBall called!");
@@ -320,21 +320,21 @@ function Model(controller) {
         }
 
         return true;
-    }
+    };
 
     this.resetModel = function() {
         // console.log("Model: resetModel called!");
 
         start = true;
-    }
+    };
 
     this.shutDown = function() {
 	// console.log("Model: shutDown called!");
-	}
+	};
 
     this.getScore = function() {
     	// console.log("Model: getScore called!");
         alert(score);
         return Math.round(score);
-    }
+    };
 }

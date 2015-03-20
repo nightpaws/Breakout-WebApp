@@ -35,11 +35,6 @@ html, body,section{
 	font-size:small;
 }
 
-/*Pause button styling*/
-#pauseButton {
-	text-align: center;
-	background: blue;
-}
 
 /*pause menu */
 #pause {
@@ -64,9 +59,20 @@ html, body,section{
 	background-color: black;
 }
 
+/*Pause button styling*/
 #pauseButton {
 height:5%;
+width: 100%;
+border: 0em;
+overflow: hidden;
+
 background-color:gray;
+background: transparent;
+
+text-align: center;
+font-size: large;
+font-family: sans-serif;
+color: white;
 }
 
 #game {

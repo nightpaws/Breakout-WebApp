@@ -12,7 +12,6 @@
     <meta name="description" content="An attempt at building a version of breakout using JavaScript, CSS and HTML5">
     <meta name="keywords" content="game, breakout, strathclyde, assignment, mobile app, android, apple, chrome, safari">
     <meta name="copyright" content="Craig Morrison">
-    <meta name="author" content="Craig Morrison">
     <!-- Give the app an icon -->
     <link rel="icon" sizes="192x192" href="images/breakout.png">
     <link rel="apple-touch-icon" href="images/breakout.png">
@@ -37,27 +36,27 @@
         <h2>(Please lock device rotation before playing!)</h2>
     </section>
     <section id="gameplay" class="noDisplay">
-        <div href="#" id="pauseButton">Pause
-        </div>
+        <button id="pauseButton">Pause</button>
         <div id="game">
             <canvas id="gameCanvas">Your device sucks. Upgrade your browser or buy a better device.</canvas>
         </div>
         <div id="pause" class="noDisplay">
             <h1>Paused!</h1>
             <ul>
-                <li href="#" id="resume">Resume</li>
-                <li href="#" id="quit">Return to Menu</li>
+                <li  id="resume">Resume</li>
+                <li  id="quit">Return to Menu</li>
             </ul>
         </div>
     </section>
-
-
+    
+    <!-- Not so essential script for functionality but ho hum... -->
+    <script src="js/fucking-IE.js"></script>
     <!-- Essential Script for functionality -->
     <script src="js/model.js"></script>
     <script src="js/view.js"></script>
     <script src="js/controller.js"></script>
-    <!-- Not so essential script for functionality but ho hum... -->
-    <script type="text/javascript" src="js/fucking-IE.js"></script>
+   
+    
 </body>
 
 </html>

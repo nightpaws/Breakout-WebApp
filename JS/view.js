@@ -3,7 +3,7 @@
 
 function View(model) {
 
-    var gameCanvas = document.getElementById("gameCanvas")
+    var gameCanvas = document.getElementById("gameCanvas");
     var gameDiv = document.getElementById("game");
     var firstRun = true; //To allow 'constructor' like call on first run
     var canvas = gameCanvas.getContext("2d");
@@ -76,7 +76,7 @@ function View(model) {
         canvas.arc(ball.x, ball.y, ball.width / 2, 0, 2 * Math.PI);
         canvas.fill();
 
-    }
+    };
 
 
 }

@@ -65,7 +65,7 @@ function Controller() {
         // console.log("Controller: hidePauseMenu called!");
 
         var pauseMnu = document.getElementById("pause");
-        // pauseMnu.className = "noDisplay";
+        pauseMnu.className = "noDisplay";
         controller.play();
     };
 
@@ -85,7 +85,7 @@ function Controller() {
         newGame.addEventListener("click", function() {
 
             var game = document.getElementById("gameplay");
-            gameplay.className = "";
+            game.className = "";
 
             var menu = document.getElementById("menu");
             menu.className += "noDisplay";
