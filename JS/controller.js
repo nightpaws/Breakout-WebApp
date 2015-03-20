@@ -4,7 +4,7 @@
 function Controller() {
 
     var model = new Model(this);
-    var view = new CanvasDrawer(model);
+    var view = new View(model);
     var rate = 30;//rate of update
     var run = false; //game state
     var gamma = 0;
@@ -66,7 +66,7 @@ function Controller() {
 
         var pauseMnu = document.getElementById("pause");
         // pauseMnu.className = "noDisplay";
-        controller.run();
+        controller.play();
     };
 
     this.getUpdateTime = function() {
