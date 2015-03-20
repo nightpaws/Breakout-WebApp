@@ -20,19 +20,36 @@ function Controller() {
     /*Show/hide functions*/
     this.showMainMenu = function() {
         console.log("Controller: showMainMenu called!");
+        
+        var pauseMnu = document.getElementById("pause");
+        pauseMnu.className = "noDisplay";
+
+        var gameplay = document.getElementById("gameplay");
+        gameplay.className = "noDisplay";
+
+        var menu = document.getElementById("menu");
+        menu.className = "";
 
     };
     this.hideMainMenu = function() {
         console.log("Controller: hideMainMenu called!");
 
+        var menu = document.getElementById("menu");
+        menu.className = "noDisplay";
+
     };
     this.showPauseMenu = function() {
         console.log("Controller: showPauseMenu called!");
+        running = false;
+        var pauseMnu = document.getElementById("pause");
+        pauseMnu.className = "";
 
     };
     this.hidePauseMenu = function() {
         console.log("Controller: hidePauseMenu called!");
-
+        var pauseMnu = document.getElementById("pause");
+        pauseMnu.className = "noDisplay";
+        running = true;
     };
 
 
@@ -40,20 +57,19 @@ function Controller() {
     this.control = function() {
 
         var playBtn = document.getElementById("start");
-
+        var controller = this; //because JS can't self-reference... :\
         playBtn.addEventListener("click", function() {
 
-            var game = document.getElementById("game");
+            var game = document.getElementById("gameplay");
             game.className = "";
 
-            var menu = document.getElementById("menu");
-            menu.className += "noDisplay";
+           controller.hideMainMenu();
 
         });
 
-        var quitBtn = document.getElementById("quit");
+        var exitBtn = document.getElementById("exit");
         
-        quitBtn.addEventListener("click", function() {
+        exitBtn.addEventListener("click", function() {
 
             console.log("Attempting to Quit...");
             window.close();
@@ -61,7 +77,26 @@ function Controller() {
             window.location = "https://encrypted.google.com/";
 
         });
+
+         var pauseBtn = document.getElementById("pauseButton");
+        pauseBtn.addEventListener("click", function() {
+            controller.showPauseMenu();
+        });
+
+        //In Game Pause Options
+         var resumeGameBtn = document.getElementById("resume");
+        resumeGameBtn.addEventListener("click", function() {
+            controller.hidePauseMenu();
+          //controller.run();
+        });
+
+         var quitGameBtn = document.getElementById("quit");
+        quitGameBtn.addEventListener("click", function() {
+            //model.clearModel();
+
+            controller.showMainMenu();
+        });
     };
-    this.control();
+    this.control(); //loop
 };
 document.addEventListener("load", new Controller());

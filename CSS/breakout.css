@@ -37,8 +37,19 @@ html, body,section{
 
 /*In game styling*/
 #pauseButton {
-
+	text-align: center;
 }
 #gameplay {
 	background-color: black;
+}
+
+/*pause menu */
+#pause {
+	text-align: center;
+}
+#pause h1 {
+	font-size: xx-large;
+}
+#pause li {
+	font-size: x-large;
 }
