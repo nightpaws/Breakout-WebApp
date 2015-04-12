@@ -133,7 +133,9 @@ function Controller() {
              take the gamma value and store it*/
             window.addEventListener("deviceorientation", function(eventData){
                 gamma = eventData.gamma;
+
             });
+
         }
     };
 
